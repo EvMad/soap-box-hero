@@ -12,9 +12,9 @@ class post extends Model {
       {
       title: {
           type: DataTypes.STRING,
-          allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
+      //     allowNull: false,
+      // primaryKey: true,
+      // autoIncrement: true,
       },
       content: {
           type: DataTypes.STRING,
