@@ -1,25 +1,45 @@
-{{!-- {{#each  as |user| }}
-<div class="row align-center mb-5">
-  <div class="col-md-6">
-    <h2> {{user.name}}</h2>
-  </div>
-  <div class="col-md-6">
-    <h3><a href="mailto:{{user.email}}">{{user.email}}</a></h3>
-  </div>
-</div>
-{{/each}} --}}
+<div class="container">
+        <div class="row">
 
-      {{#each Post as |post| }}
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">{{title}}</h5>
-          <p class="card-text">{{content}}</p>
+            <!--empty column-->
+            <div class="col-3"></div>
+
+            <div class="col-6"> 
+
+                <!--hard coded column start-->
+                <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Welcome to the Soap Box</h5>
+                  <p class="card-text">Login to read, post, and comment!</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                </ul> 
+              </div>
+     <!--hard coded column end-->
+
+      <!--partial generated columns start-->
+            {{#each Post as |post| }}
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">{{title}}</h5>
+                <p class="card-text">{{content}}</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{comment}}</li>
+                <li class="list-group-item">A second comment</li>
+                <li class="list-group-item">A third comment</li>
+              </ul> 
+            </div>
+            {{/each}}
+            <!--partial generated columns end-->
+
+            <!--end card column-->
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">{{comment}}</li>
-          <li class="list-group-item">A second comment</li>
-          <li class="list-group-item">A third comment</li>
-        </ul>
-        
-      </div>
-      {{/each}}
+
+         <!--empty column-->
+         <div class="col-3"></div>
+           
+         <!--end row-->
+        </div>
+        <!--end container-->
+    </div>
