@@ -26,27 +26,6 @@ router.get('/', async (req,res) => {
 }
 });
 
-//
-
-router.get("/map", withAuth, async (req, res) => {
-  try {
-    // Find the logged in user based on the session ID
-    const userData = await user.findByPk(req.session.user_id, {
-      attributes: { exclude: ["password"] },
-      include: [{ model: Post }],
-    });
-    const loggedUser = userData.get({ plain: true });
-    res.render("map", {
-      ...user,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-
-
 
 //post route
 
@@ -57,7 +36,7 @@ router.post('/', async (req, res) => {
       user_id: req.session.user_id,
       username: req.session.username
     });
-    // const imageUrl = await Post.create({res.result.info.secure_url});
+    
     res.status(200).json(newPost);
   } catch (err) {
     res.status(500).json(err);
@@ -107,19 +86,19 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
-router.get("/createPost", withAuth, async (req, res) => {
+router.get("/createPost", async (req, res) => {
   try {
     // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
+    const userData = await user.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
       include: [{ model: Post }],
     });
-    const user = userData.get({ plain: true });
+    const loggedUser = userData.get({ plain: true });
 
 
     
     res.render("createPost", {
-      ...user,
+      ...loggedUser,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
