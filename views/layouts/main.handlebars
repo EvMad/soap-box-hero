@@ -15,12 +15,14 @@
         <a class="navbar-brand" href="/">The Soap Box</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-               {{#if logged_out}}     <a class="nav-link active" aria-current="page" href="/login">Login</a>{{/if}}
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/createPost">Dashboard</a>
-                </li>
+                
+   <li class="nav-item">
+       {{!-- <button type="button" class="btn btn-light" id="login" href="/login">Login</button>  --}}
+        <a class="nav-link active" aria-current="page" href="/login">Login</a>
+        </li>
+               
+               {{#if logged_in}} <li class="nav-item"><a class="nav-link active" href="/createPost">Dashboard</a></li>{{/if}}
+                
                 <li>{{#if logged_in}} <button type="button" class="btn btn-light" id="logout">Logout</button> {{/if}}</li>
             </ul>
 
