@@ -89,22 +89,25 @@ router.get('/', withAuth, async (req, res) => {
 router.get("/createPost", async (req, res) => {
   try {
     // Find the logged in user based on the session ID
-    const userData = await user.findByPk(req.session.user_id, {
-      attributes: { exclude: ["password"] },
-      include: [{ model: Post }],
-    });
-    const loggedUser = userData.get({ plain: true });
+    // const userData = await user.findByPk(req.session.user_id, {
+    //   attributes: { exclude: ["password"] },
+    //   include: [{ model: Post }],
+    // });
+    // const loggedUser = userData.get({ plain: true });
 
 
     
-    res.render('createPost', {
-      ...loggedUser,
-      logged_in: req.session.logged_in,
-    });
+    res.render('createPost');
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+//taken from above res render for createPost
+// , {
+//   ...loggedUser,
+//   logged_in: req.session.logged_in,
+// }
 
 
 
