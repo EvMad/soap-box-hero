@@ -5,7 +5,7 @@ const newPostHandler = async (event) =>
   const content = document.querySelector("#post-content").value.trim();
 
   if (title && content) {
-    console.log(title, content)
+    console.log(title, content);
       fetch("/api/post", {
       method: "POST",
       body: JSON.stringify({ title, content }),
@@ -21,9 +21,10 @@ const newPostHandler = async (event) =>
 
 document.getElementById("postBtn").addEventListener(
 "click",
+
 function (e) {
 e.preventDefault();
-
+console.log("clicked!!!!");
 },
 false
 )};
