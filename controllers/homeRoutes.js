@@ -18,7 +18,7 @@ router.get('/', async (req,res) => {
     const allPosts = userPosts.map((post) => post.get({ plain: true }));
   // res.send('hello');
   res.render('homePage', {
-    post,
+    allPosts,
     logged_in: req.session.logged_in
   });
 } catch (err) {
@@ -132,5 +132,9 @@ router.get('/login', (req, res) => {
 
   res.render('login');
 });
+
+
+
+
 
 module.exports = router;
