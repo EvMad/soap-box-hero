@@ -105,6 +105,25 @@ router.get("/createPost", async (req, res) => {
   }
 });
 
+// single posts view route ???
+
+router.get("/Post", async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const userData = await user.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+      include: [{ model: post }],
+    });
+    const loggedUser = userData.get({ plain: true });
+
+
+    
+    res.render('post');
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 
 
