@@ -118,7 +118,7 @@ router.get("/post", async (req, res) => {
 
 
     
-    res.render('post/:id');
+    res.render('post');
   } catch (err) {
     res.status(500).json(err);
   }

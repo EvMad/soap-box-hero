@@ -1,12 +1,32 @@
- <!--partial generated columns start-->
+<div class="container">
+  <div class="row">
+<!--empty column-->
+<div class="col-3">
+  <!--Left Side Fill-->
+</div>
+
+<div class="col-6">
+  <div class="card text-center" style="width: 36rem">
+    <div class="card-body">
+      <h1 class="card-title">Read and Comment</h1>
+    </div>
+  </div>
+   <!--partial generated columns start-->
             {{#each post as |post| }}
             <div class="card" style="width: 36rem;">
               <div class="card-body">
                 <h4 class="card-title"><span class="display-6">{{title}}</span> by: {{user.name}}</h4>
                 <p class="card-text">{{content}}</p>
               </div>
-         
-            
-  
             {{/each}}
             <!--partial generated columns end-->
+</div>
+<!--empty column-->
+<div class="col-3">
+  {{!-- {{> comments }} --}}
+  <!--Right Side Fill-->
+</div>
+<!--end row-->
+  </div>
+  <!--end container-->
+</div>
