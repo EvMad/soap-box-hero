@@ -19,13 +19,13 @@ comment.init(
             allowNull: false,
             defaultValue: DataTypes.NOW,
         },
-        username: {
-            type: DataTypes.STRING,
-            references: {
-                model: 'user',
-                key: 'name',
-            },
-        },
+        // username: {
+        //     type: DataTypes.STRING,
+        //     references: {
+        //         model: 'user',
+        //         key: 'name',
+        //     },
+        // },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
