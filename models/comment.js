@@ -23,7 +23,7 @@ comment.init(
             type: DataTypes.STRING,
             references: {
                 model: 'user',
-                key: 'name'
+                key: 'name',
             },
         },
         user_id: {

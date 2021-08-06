@@ -29,4 +29,4 @@ user.hasMany(post, {
     foreignKey: 'post_id',
   });
 
-module.exports = { user, post, comment };
+module.exports = { user, post, comment }
