@@ -19,6 +19,7 @@ const commentHandler = async (event) => {
   
       if (response.ok) {
         // console.log("hello");
+        alert("Comment posted!");
         document.location.replace(`/`);
         // document.location.replace(`/post/${post_id}`);
       } else {

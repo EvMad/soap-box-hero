@@ -21,6 +21,29 @@ router.post('/:id', async (req, res) => {
     }
   });
 
+  // get
+
+  router.get("/", async (req,res) => {
+    const commentData = await comment.findAll( {
+      
+      include: [
+        {
+          model: post,
+          attributes: ["id"],
+        },
+      ],
+    });
+    const allComments = commentData.get({ plain: true });
+    
+    res.render("homePage", {
+      ...allComments,
+      user_id: req.session.user_id,
+      userLoggedIn: req.session.username,
+      logged_in: req.session.logged_in,
+  
+    });
+  });
+
 router.delete('/:id', withAuth, async (req, res) => {
     try {
       const commentData = await comment.destroy({

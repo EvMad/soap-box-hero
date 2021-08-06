@@ -1,10 +1,7 @@
 <div class="container">
         <div class="row">
 
-            <!--empty column-->
-            <div class="col-3">
-              {{!-- <h2>Left Side Filler</h2> --}}
-            </div>
+         
 
             <div class="col-6"> 
 
@@ -26,29 +23,15 @@
                 <h4 class="card-title"><span class="display-6">{{title}}</span> by: {{user.name}}</h4>
                 <p class="card-text">{{content}}</p>
               </div>
-              {{!--comment post--}}
-                <div class="has-text-black">
-      <h6 class="is-size-2 is-underlined">
-        Comments
-      </h6>
-               {{#each comments as |comment|}}
-        
-          <ul class="list-group list-group-flush"></ul>
-          <li>
-          <strong>{{comment.message}} </strong> 
-          </li>
-          </ul> 
-          {{/each}}
-            </div>
+         
        
-              
-                
+            
                  {{!-- comment form --}}
     <form class="comment-form">
     
       <div class="field">
         <p class="control">
-          <textarea class="textarea is-primary" type="text" id="comment" data-post-id="{{id}}"
+          <textarea class="textarea is-primary" type="text" id="comment" data-post-id="{{post.id}}"
             placeholder="Type your comment here..."></textarea>
         </p>
       </div>
@@ -62,12 +45,28 @@
     </form>
             {{/each}}
             <!--partial generated columns end-->
-
+     
+  {{!--comment post--}}
+                <div class="has-text-black">
+      <h6 class="is-size-2 is-underlined">
+        Comments
+      </h6>
+      
+               {{#each allComments as |comment|}}
+               <ul class="list-group list-group-flush"></ul>
+          <li>
+          <p>{{comment.message}}</p> 
+          </li>
+          </ul> 
+          {{/each}}
+           
+            </div>
             <!--end card column-->
         </div>
 
          <!--empty column-->
          <div class="col-3">
+                     
            {{!-- <h2>Right Side Filler</h2> --}}
          </div>
            
