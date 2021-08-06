@@ -20,6 +20,7 @@
   "homepage": "https://github.com/EvMad/soap-box-hero#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "bootstrap": "^5.1.0",
     "connect-session-sequelize": "^7.1.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -28,6 +29,7 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.12",
+    "scss": "^0.2.4",
     "sequelize": "^6.6.5"
   }
 }
