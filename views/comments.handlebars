@@ -1,0 +1,31 @@
+               {{!-- comment form --}}
+    <form class="comment-form">
+    
+      <div class="field">
+        <p class="control">
+          <textarea class="textarea is-primary" type="text" id="comment" data-post-id="{{post.id}}"
+            placeholder="Type your comment here..."></textarea>
+        </p>
+      </div>
+      <div class="field">
+        <p class="control">
+          <button class="button is-primary" type="submit">
+            Post Comment
+          </button>
+        </p>
+      </div>
+    </form>
+
+      {{!--comment post--}}
+                <div class="has-text-black">
+      <h6 class="is-size-2 is-underlined">
+        Comments
+      </h6>
+      
+               {{#each newComment as |comment|}}
+               <ul class="list-group list-group-flush"></ul>
+          <li>
+          <p>{{comment.message}}</p> 
+          </li>
+          </ul> 
+          {{/each}}
