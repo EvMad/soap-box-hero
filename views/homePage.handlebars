@@ -28,7 +28,48 @@
               </div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">{{comment}}</li>
-              
+                 {{!-- comment form --}}
+    <form class="comment-form">
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="text" id="username-input" value="{{userLoggedIn}}" disabled>
+          <span class="icon is-small is-left">
+            <i class="far fa-user"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field">
+        <p class="control">
+          <textarea class="textarea is-primary" type="text" id="comment" data-post-id="{{id}}"
+            placeholder="Type your comment here..."></textarea>
+        </p>
+      </div>
+      <div class="field">
+        <p class="control">
+          <button class="button is-primary" type="submit">
+            Post Comment
+          </button>
+        </p>
+      </div>
+    </form>
+    {{!--comment post--}}
+
+    <section class="column comments">
+    <div class="has-text-black">
+      <h6 class="is-size-2 is-underlined">
+        Comments
+      </h6>
+        {{#each comments as |comment|}}
+        <div class="has-text-left has-icon-right">
+          
+          <div class="comment box p-2">
+          <strong>Comment:</strong> {{comment.message}} 
+         
+  
+          </div>
+          {{/each}}
+        </div>
+  </section>
               </ul> 
             </div>
             {{/each}}
