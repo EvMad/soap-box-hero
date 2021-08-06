@@ -14,6 +14,13 @@ router.post('/:id', async (req, res) => {
         logged_in: req.session.logged_in
       },
       );
+      res.render("homePage", {
+        ...newComment,
+        user_id: req.session.user_id,
+        userLoggedIn: req.session.username,
+        logged_in: req.session.logged_in,
+    
+      });
       console.log("IS IT REACHING HERE")
       res.status(200).json(newComment);
     } catch (err) {

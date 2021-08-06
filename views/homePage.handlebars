@@ -1,8 +1,5 @@
 <div class="container">
         <div class="row">
-
-         
-
             <div class="col-6"> 
 
                 <!--hard coded column start-->
@@ -24,7 +21,6 @@
                 <p class="card-text">{{content}}</p>
               </div>
          
-       
             
                  {{!-- comment form --}}
     <form class="comment-form">
@@ -52,7 +48,7 @@
         Comments
       </h6>
       
-               {{#each allComments as |comment|}}
+               {{#each newComment as |comment|}}
                <ul class="list-group list-group-flush"></ul>
           <li>
           <p>{{comment.message}}</p> 
