@@ -107,7 +107,7 @@ router.get("/createPost", async (req, res) => {
 
 // single posts view route ???
 
-router.get("/Post", async (req, res) => {
+router.get("/post", async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await user.findByPk(req.session.user_id, {
@@ -118,7 +118,7 @@ router.get("/Post", async (req, res) => {
 
 
     
-    res.render('post');
+    res.render('post/:id');
   } catch (err) {
     res.status(500).json(err);
   }

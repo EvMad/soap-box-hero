@@ -35,7 +35,7 @@ router.get("/:id", async (req,res) => {
     ],
   });
   console.log("here?!", post);
-  res.render("homePage", {
+  res.render("post", {
     ...postData,
     user_id: req.session.user_id,
     userLoggedIn: req.session.username,
