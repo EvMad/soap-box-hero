@@ -2,6 +2,7 @@ const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { user } = require('../../models')
 const { post } = require('../../models');
+const { comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
@@ -29,7 +30,7 @@ router.get("/:id", async (req,res) => {
         attributes: ["name"],
       },
       {
-        model: post,
+        model: comment,
       },
     ],
   });
@@ -53,12 +54,12 @@ router.get("/", async (req,res) => {
         attributes: ["name"],
       },
       {
-        model: post,
+        model: comment,
       },
     ],
   });
   const allPosts = postData.get({ plain: true });
-  console.log("here?!", post);
+  console.log("here?!");
   console.log(postData);
   res.render("homePage", {
     ...allPosts,
