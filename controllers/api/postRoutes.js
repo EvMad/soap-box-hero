@@ -5,50 +5,6 @@ const { post } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
-
-// router.get("/", async (req,res) => {
-//   const postData = await post.findByPk(req.params.id, {
-//     include: [
-//       {
-//         model: user,
-//         attributes: ["username"],
-//       },
-//       {
-//         model: post,
-//       },
-//     ],
-//   });
-//   console.log("here?!", post);
-//   res.render("homePage", {
-//     ...post,
-//     user_id: req.session.user_id,
-//     userLoggedIn: req.session.username,
-//     logged_in: req.session.logged_in,
-
-//   });
-// });
-
-/////
-
-
-// router.post('/', withAuth, async (req, res) => {
-//   try {
-//     const newPost = await post.create({
-//       ...req.body,
-//       user_id: req.session.user_id,
-//       // username: req.session.username
-//     });
-
-//     console.log(req.title);
-
-//     res.status(200).json(newPost);
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// });
-
-// new:
-
 router.post('/', async (req, res) => {
   try { 
     const newPost = await post.create({
@@ -63,8 +19,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-
-//new
 
 //Find one 
 router.get("/:id", async (req,res) => {
@@ -93,13 +47,6 @@ router.get("/:id", async (req,res) => {
 router.get("/", async (req,res) => {
   const postData = await post.findAll( {
     
-    // attributes: [
-    //   'id',
-    //   'title',
-    //   'content',
-    //   'comment'
-    // ],
-    
     include: [
       {
         model: user,
@@ -123,10 +70,6 @@ router.get("/", async (req,res) => {
 });
 
 
-
-
-
-////
 
 router.put('/:id', async (req, res) => {
   console.log(req.body)
