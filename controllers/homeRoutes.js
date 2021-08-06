@@ -26,6 +26,34 @@ router.get('/', async (req,res) => {
 }
 });
 
+//
+
+// router.get("/", async (req, res) => {
+//   try {
+//     const postData = await post.findAll({
+//       include: [
+//         {
+//           model: user,
+//           attributes: ["name"],
+//         },
+//       ],
+//     });
+
+//     // const sortedPosts = postData.sort((a,b) => (a.date_posted < b.date_posted) ? 1 : -1 );
+    
+//     // const posts = sortedPosts.map((posts) => posts.get({ plain: true }));
+
+    
+//     res.render("homepage", {
+//       allPosts,
+//       logged_in: req.session.logged_in,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+
 
 //post route
 
@@ -89,11 +117,11 @@ router.get('/', withAuth, async (req, res) => {
 router.get("/createPost", async (req, res) => {
   try {
     // Find the logged in user based on the session ID
-    // const userData = await user.findByPk(req.session.user_id, {
-    //   attributes: { exclude: ["password"] },
-    //   include: [{ model: Post }],
-    // });
-    // const loggedUser = userData.get({ plain: true });
+    const userData = await user.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+      include: [{ model: post }],
+    });
+    const loggedUser = userData.get({ plain: true });
 
 
     

@@ -11,7 +11,7 @@ class post extends Model {
   post.init(
       {
       id: {
-  type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER,
           allowNull: false,
       primaryKey: true,
       autoIncrement: true,

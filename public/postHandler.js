@@ -12,7 +12,7 @@ const newPostHandler = async (event) =>
       headers: { "Content-Type": "application/json" },
     }).then((response) => {
     if (response.ok) {
-      document.location.replace("/homepage");
+      document.location.replace("/homePage");
     } else {
       alert("Please fill out title and content fields before submitting.")
     }

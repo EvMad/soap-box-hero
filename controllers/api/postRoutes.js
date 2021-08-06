@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const sequelize = require('../../config/connection');
 const { user } = require('../../models')
 const { post } = require('../../models');
 const withAuth = require('../../utils/auth');
@@ -71,7 +72,7 @@ router.get("/:id", async (req,res) => {
     include: [
       {
         model: user,
-        attributes: ["username"],
+        attributes: ["name"],
       },
       {
         model: post,
@@ -80,7 +81,7 @@ router.get("/:id", async (req,res) => {
   });
   console.log("here?!", post);
   res.render("homePage", {
-    ...post,
+    ...postData,
     user_id: req.session.user_id,
     userLoggedIn: req.session.username,
     logged_in: req.session.logged_in,
@@ -91,19 +92,29 @@ router.get("/:id", async (req,res) => {
 // find all 
 router.get("/", async (req,res) => {
   const postData = await post.findAll( {
+    
+    // attributes: [
+    //   'id',
+    //   'title',
+    //   'content',
+    //   'comment'
+    // ],
+    
     include: [
       {
         model: user,
-        attributes: ["username"],
+        attributes: ["name"],
       },
       {
         model: post,
       },
     ],
   });
+  const allPosts = postData.get({ plain: true });
   console.log("here?!", post);
+  console.log(postData);
   res.render("homePage", {
-    ...post,
+    ...allPosts,
     user_id: req.session.user_id,
     userLoggedIn: req.session.username,
     logged_in: req.session.logged_in,
