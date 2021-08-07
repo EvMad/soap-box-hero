@@ -108,60 +108,74 @@ router.get("/createPost", async (req, res) => {
 // single posts view route ???
 
 router.get("/post", async (req, res) => {
-  try {
-    // Find the logged in user based on the session ID
-    const userData = await user.findByPk(req.session.user_id, {
-      attributes: { exclude: ["password"] },
-      include: [{ model: post }],
+  // try {
+  //   // Find the logged in user based on the session ID
+  //   const userData = await user.findByPk(req.session.user_id, {
+  //     attributes: { exclude: ["password"] },
+  //     include: [{ model: post }],
+  //   });
+  //   const loggedUser = userData.get({ plain: true });
+    post.findAll({
+      attributes: [
+        'id',
+        'title',
+        'content'
+      ],
+      include: [{
+        model: user,
+        attributes: ['name']
+      }],
+    })
+    .then(dbPostData => res.json(dbPostData.reverse()))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
     });
-    const loggedUser = userData.get({ plain: true });
+  });
 
 
     
-    res.render('post');
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+
+
 
 // post by id??
 
 router.get("/post/:id", async (req, res) => {
- post.findOne({
-   where: {
-     id: req.params.id
-   },
-   attributes: [
-     'id',
-     'title',
-     'content'
-   ],
-   include: [
-     {
-       model: comment,
-       attributes: ['message', 'date_posted', 'user_id'],
-       include: {
-         model: user,
-         attributes: ['name']
-       }
-     },
-   ]
- })
- .then(dbPostData => {
-   if (!dbPostData) {
-     res.status(404).json({ message: 'No post found with this id' });
-     return;
-   }
-   const Post = dbPostData.get({ plain:true });
- })
- .catch(err => {
-   console.log(err);
-   res.status(500).json(err);
- })
-});
-
-
-
+  post.findOne({
+    where: {
+      id: req.params.id
+    },
+    attributes: [
+      'id',
+      'title',
+      'content'
+    ],
+    include: [
+      {
+        model: comment,
+        attributes: ['message', 'date_posted', 'user_id'],
+        include: {
+          model: user,
+          attributes: ['name']
+        }
+      },
+    ]
+  })
+  .then(dbPostData => {
+    if (!dbPostData) {
+      res.status(404).json({ message: 'No Post found with this id' });
+      return;
+    }
+      console.log(dbPostData);
+      const Post = dbPostData.get({ plain:true });
+    }
+    
+  )
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  })
+ });
 
 router.get('/createPost', (req, res) => {
   // If a session exists, redirect the request to the homepage

@@ -21,28 +21,32 @@ router.post('/', async (req, res) => {
 });
 
 
-//Find one 
-router.get("/:id", async (req,res) => {
-  const postData = await post.findByPk(req.params.id, {
-    include: [
-      {
-        model: user,
-        attributes: ["name"],
-      },
-      {
-        model: comment,
-      },
-    ],
-  });
-  console.log("here?!", post);
-  res.render("post", {
-    ...postData,
-    user_id: req.session.user_id,
-    userLoggedIn: req.session.username,
-    logged_in: req.session.logged_in,
 
-  });
-});
+
+ 
+
+// Find one 
+// router.get("/:id", async (req,res) => {
+//   const postData = await post.findByPk(req.params.id, {
+//     include: [
+//       {
+//         model: user,
+//         attributes: ["name"],
+//       },
+//       {
+//         model: comment,
+//       },
+//     ],
+//   });
+//   console.log("here?!", post);
+//   res.render("post", {
+//     ...postData,
+//     user_id: req.session.user_id,
+//     userLoggedIn: req.session.username,
+//     logged_in: req.session.logged_in,
+
+//   });
+// });
 
 // find all 
 router.get("/", async (req,res) => {
