@@ -141,10 +141,7 @@ router.get("/post", async (req, res) => {
 // post by id??
 
 router.get("/post/:id", async (req, res) => {
-  post.findOne({
-    where: {
-      id: req.params.id
-    },
+  post.findByPk({
     attributes: [
       'id',
       'title',
