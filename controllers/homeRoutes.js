@@ -168,6 +168,7 @@ router.get("/post/:id", async (req, res) => {
     }
       console.log(dbPostData);
       const Post = dbPostData.get({ plain:true });
+      res.render('post');
     }
     
   )
@@ -176,6 +177,9 @@ router.get("/post/:id", async (req, res) => {
     res.status(500).json(err);
   })
  });
+
+
+
 
 router.get('/createPost', (req, res) => {
   // If a session exists, redirect the request to the homepage
