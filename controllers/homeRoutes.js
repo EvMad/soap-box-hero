@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { user, post } = require('../models');
+const { user, post, comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 
@@ -122,6 +122,42 @@ router.get("/post", async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+// post by id??
+
+router.get("/post/:id", async (req, res) => {
+ post.findOne({
+   where: {
+     id: req.params.id
+   },
+   attributes: [
+     'id',
+     'title',
+     'content'
+   ],
+   include: [
+     {
+       model: comment,
+       attributes: ['id', 'message', 'date_posted', 'user_id'],
+       include: {
+         model: user,
+         attributes: ['username']
+       }
+     },
+   ]
+ })
+ .then(dbPostData => {
+   if (!dbPostData) {
+     res.status(404).json({ message: 'No post found with this id' });
+     return;
+   }
+   const Post = dbPostData.get({ plain:true });
+ })
+ .catch(err => {
+   console.log(err);
+   res.status(500).json(err);
+ })
 });
 
 
