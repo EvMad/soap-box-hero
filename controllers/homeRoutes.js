@@ -142,7 +142,7 @@ router.get("/post/:id", async (req, res) => {
        attributes: ['id', 'message', 'date_posted', 'user_id'],
        include: {
          model: user,
-         attributes: ['username']
+         attributes: ['name']
        }
      },
    ]
