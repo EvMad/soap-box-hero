@@ -9,7 +9,7 @@ const commentHandler = async (event) => {
     const message = document.querySelector("#comment").value.trim();
   
     if (message) {
-      const response = await fetch('/api/commentRoutes', {
+      const response = await fetch('/api/comment', {
         method: "POST",
         body: JSON.stringify({ message }),
         headers: {

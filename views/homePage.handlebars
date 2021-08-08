@@ -12,7 +12,7 @@
                 <!--hard coded column start-->
                 <div class="card text-center" style="width: 36rem;">
                 <div class="card-body">
-                  <h1 class="card-title">Welcome to the Soap Box</h1>
+                  <h1 class="card-title headings">Welcome to the Soap Box</h1>
                   <p class="card-text">Login to read, post, and comment!</p>
                 </div>
                 <ul class="list-group list-group-flush">
@@ -52,11 +52,17 @@
 
 
 
-      {{!--comment post--}}
+    
+            
+  
+            {{/each}}
+
+              {{!--comment post--}}
                 <div class="has-text-black">
       <h6 class="is-size-2 is-underlined">
         Comments
       </h6>
+      <p>{{comment.message}}</p>
       
                {{#each allComments as |comment|}}
                <ul class="list-group list-group-flush"></ul>
@@ -65,9 +71,6 @@
           </li>
           </ul> 
           {{/each}}
-            
-  
-            {{/each}}
 
 
  
