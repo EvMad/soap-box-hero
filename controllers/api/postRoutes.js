@@ -21,13 +21,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-
-
-
- 
-
-
-
 // find all 
 router.get("/", async (req,res) => {
   const postData = await post.findAll( {
@@ -55,6 +48,7 @@ router.get("/", async (req,res) => {
 });
 
 
+//update post
 
 router.put('/:id', async (req, res) => {
   console.log(req.body)

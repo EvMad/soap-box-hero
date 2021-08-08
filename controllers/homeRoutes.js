@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const sequelize = require('../config/connection');
 const { user, post, comment } = require('../models');
 const withAuth = require('../utils/auth');
 
@@ -107,7 +108,7 @@ router.get("/createPost", async (req, res) => {
 
 // get all posts
 
-router.get("/post", async (req, res) => {
+router.get("/post/", async (req, res) => {
   // try {
   //   // Find the logged in user based on the session ID
   //   const userData = await user.findByPk(req.session.user_id, {
@@ -115,7 +116,11 @@ router.get("/post", async (req, res) => {
   //     include: [{ model: post }],
   //   });
   //   const loggedUser = userData.get({ plain: true });
-    post.findAll({
+    post.findOne({
+
+      where: {
+        id: req.params.id
+      },
       attributes: [
         'id',
         'title',
@@ -136,12 +141,13 @@ router.get("/post", async (req, res) => {
 
     // post by id??
 
-router.get("/post/:id", async (req, res) => {
-  post.findOne({
+router.get("/post/", async (req, res) => {
 
-      // where: {
-      //   id: 'id',
-      // },
+  const onePost = await post.findOne({
+
+      where: {
+        id: 'id',
+      },
 
     attributes: [
       'id',
@@ -152,11 +158,12 @@ router.get("/post/:id", async (req, res) => {
       {
         model: comment,
         attributes: ['message', 'date_posted', 'user_id'],
+
         include: {
           model: user,
           attributes: ['name']
         }
-      },
+      }
     ]
   })
   .then(dbPostData => {
@@ -166,7 +173,7 @@ router.get("/post/:id", async (req, res) => {
     
     }
       else {
-        res.render('post');
+        console.log(onePost);
       }
       return; 
     }

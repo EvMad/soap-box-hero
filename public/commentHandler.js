@@ -9,7 +9,7 @@ const commentHandler = async (event) => {
     const message = document.querySelector("#comment").value.trim();
   
     if (message) {
-      const response = await fetch(`/api/comment/${postId}`, {
+      const response = await fetch('/api/commentRoutes', {
         method: "POST",
         body: JSON.stringify({ message }),
         headers: {
@@ -20,7 +20,7 @@ const commentHandler = async (event) => {
       if (response.ok) {
         // console.log("hello");
         alert("Comment posted!");
-        document.location.replace(`/`);
+        document.location.reload();
         // document.location.replace(`/post/${post_id}`);
       } else {
         alert("Failed to create comment");

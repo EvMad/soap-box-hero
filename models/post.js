@@ -19,10 +19,12 @@ class post extends Model {
 
       title: {
           type: DataTypes.STRING,
+
       
       },
       content: {
-          type: DataTypes.STRING,
+          type: DataTypes.TEXT,
+
       },
       comment: {
           type: DataTypes.STRING,
