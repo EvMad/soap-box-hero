@@ -136,12 +136,15 @@ router.get("/post", async (req, res) => {
 
     
 
-
-
 // post by id??
 
 router.get("/post/:id", async (req, res) => {
-  post.findByPk({
+  post.findOne({
+
+      // where: {
+      //   id: 'id',
+      // },
+
     attributes: [
       'id',
       'title',
@@ -161,11 +164,13 @@ router.get("/post/:id", async (req, res) => {
   .then(dbPostData => {
     if (!dbPostData) {
       res.status(404).json({ message: 'No Post found with this id' });
-      return;
-    }
       console.log(dbPostData);
-      const Post = dbPostData.get({ plain:true });
-      res.render('post');
+      // const Post = dbPostData.get({ plain:true });
+    }
+      else {
+        res.render('post');
+      }
+      return; 
     }
     
   )
