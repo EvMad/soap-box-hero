@@ -105,7 +105,7 @@ router.get("/createPost", async (req, res) => {
   }
 });
 
-// single posts view route ???
+// get all posts
 
 router.get("/post", async (req, res) => {
   // try {
@@ -134,9 +134,7 @@ router.get("/post", async (req, res) => {
   });
 
 
-    
-
-// post by id??
+    // post by id??
 
 router.get("/post/:id", async (req, res) => {
   post.findOne({
@@ -165,7 +163,7 @@ router.get("/post/:id", async (req, res) => {
     if (!dbPostData) {
       res.status(404).json({ message: 'No Post found with this id' });
       console.log(dbPostData);
-      // const Post = dbPostData.get({ plain:true });
+    
     }
       else {
         res.render('post');
@@ -179,6 +177,8 @@ router.get("/post/:id", async (req, res) => {
     res.status(500).json(err);
   })
  });
+
+
 
 
 

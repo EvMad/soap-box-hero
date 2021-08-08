@@ -5,6 +5,7 @@ const { post } = require('../../models');
 const { comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+//post new post
 
 router.post('/', async (req, res) => {
   try { 
@@ -25,28 +26,7 @@ router.post('/', async (req, res) => {
 
  
 
-// Find one 
-// router.get("/:id", async (req,res) => {
-//   const postData = await post.findByPk(req.params.id, {
-//     include: [
-//       {
-//         model: user,
-//         attributes: ["name"],
-//       },
-//       {
-//         model: comment,
-//       },
-//     ],
-//   });
-//   console.log("here?!", post);
-//   res.render("post", {
-//     ...postData,
-//     user_id: req.session.user_id,
-//     userLoggedIn: req.session.username,
-//     logged_in: req.session.logged_in,
 
-//   });
-// });
 
 // find all 
 router.get("/", async (req,res) => {
@@ -94,6 +74,8 @@ router.put('/:id', async (req, res) => {
     res.status(400).json(err)
   }
 });
+
+// delete post
 
 router.delete('/:id', withAuth, async (req, res) => {
   try {

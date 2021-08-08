@@ -4,52 +4,74 @@ const { post } = require('../../models');
 const { comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.post('/:id', async (req, res) => {
-    try {
-      const newComment = await comment.create({
-        ...req.body,
-        user_id: req.session.user_id,
-        post_id: req.params.id,
-        username: req.session.username,
-        logged_in: req.session.logged_in
-      },
-      );
-      res.render("homePage", {
-        ...newComment,
-        user_id: req.session.user_id,
-        userLoggedIn: req.session.username,
-        logged_in: req.session.logged_in,
+// router.post('/:id', async (req, res) => {
+//     try {
+//       const newComment = await comment.create({
+//         ...req.body,
+//         user_id: req.session.user_id,
+//         post_id: req.params.id,
+//         username: req.session.username,
+//         logged_in: req.session.logged_in
+//       },
+//       );
+//       res.render("homePage", {
+//         ...newComment,
+//         user_id: req.session.user_id,
+//         userLoggedIn: req.session.username,
+//         logged_in: req.session.logged_in,
     
-      });
-      console.log("IS IT REACHING HERE")
-      res.status(200).json(newComment);
-    } catch (err) {
-      res.status(400).json(err);
-    }
-  });
+//       });
+//       console.log("IS IT REACHING HERE")
+//       res.status(200).json(newComment);
+//     } catch (err) {
+//       res.status(400).json(err);
+//     }
+//   });
 
-  // get
+router.post('/', withAuth, (req, res) => {
+  if (req.session) {
+    comment.create({
+      message: req.body.message,
+      user_id: req.body.user_id,
+      post_id: req.body.post_id,
+    })
+    .then(dbCommentData => res.json(dbCommentData))
+    .catch(err => {
+      console.log(err);
+      res.status(400).json(err);
+    })
+  }
+});
+
+  // get all comments
 
   router.get("/", async (req,res) => {
-    const commentData = await comment.findAll( {
-      
-      include: [
-        {
-          model: post,
-          attributes: ["id"],
-        },
-      ],
-    });
-    const allComments = commentData.get({ plain: true });
-    
-    res.render("homePage", {
-      ...allComments,
-      user_id: req.session.user_id,
-      userLoggedIn: req.session.username,
-      logged_in: req.session.logged_in,
-  
-    });
+            comment.findAll({})
+            .then(dbCommentData => res.json(dbCommentData))
+            .catch(err => {
+              console.log(err);
+              res.status(500).json(err);
+            })
   });
+
+
+//get one comment
+
+router.get('/:id', (req, res) => {
+  comment.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(dbCommentData => res.json(dbCommentData))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  })
+});
+
+
+//delete a comment
 
 router.delete('/:id', withAuth, async (req, res) => {
     try {
