@@ -34,7 +34,7 @@ const loginFormHandler = async (event) => {
       const response = await fetch('/api/users', {
         method: 'POST',
         body: JSON.stringify({
-          username,
+          name: username,
           email,
           password
         }),
