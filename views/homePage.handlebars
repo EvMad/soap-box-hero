@@ -56,28 +56,17 @@
           </h6>
           <p>{{comment.message}}</p>
 
-          {{#each allComments as |comment|}}
+          {{#each comments as |comment|}}
           <ul class="list-group list-group-flush"></ul>
           <li>
-            <p>{{comment.message}}</p>
+            <p> {{comment.message}} </p>
           </li>
           </ul>
           {{/each}}
 
-
-
-
-
           {{/each}}
 
-
-
-
-
-
           <!--partial generated columns end-->
-
-
 
         </div>
         <!--end card column-->

@@ -61,12 +61,19 @@ router.post('/', withAuth, (req, res) => {
 //get one comment
 
 router.get('/:id', (req, res) => {
-  comment.findOne({
+ const oneComment = comment.findOne({
     where: {
       id: req.params.id
-    }
+    },
+    attributes: [
+      'message'
+    ],
   })
-  .then(dbCommentData => res.json(dbCommentData))
+  .then((oneComment) => {
+    const newComment = oneComment.get({plain:true});
+    res.render("comments", {newComment})
+  })
+  // .then(dbCommentData => res.json(dbCommentData))
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
