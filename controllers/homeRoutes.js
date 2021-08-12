@@ -109,13 +109,7 @@ router.get("/createPost", async (req, res) => {
 // get all posts
 
 router.get("/post/:id", async (req, res) => {
-  // try {
-  //   // Find the logged in user based on the session ID
-  //   const userData = await user.findByPk(req.session.user_id, {
-  //     attributes: { exclude: ["password"] },
-  //     include: [{ model: post }],
-  //   });
-  //   const loggedUser = userData.get({ plain: true });
+  
     const onePost = await post.findOne({
 
       where: {
@@ -135,15 +129,15 @@ router.get("/post/:id", async (req, res) => {
         attributes: ['message']
       }],
     })
-    .then(onePost => res.json(onePost))
+    .then((onePost) => {
+    res.json(onePost)
+    res.render("post", {post} )
+    
+    })
     .catch(err => {
       console.log(err);
       res.status(500).json(err)
       ;
-    })
-    res.render("post", {
-      post,
-      logged_in: req.session.logged_in,
     })
   ;
     console.log(onePost);
