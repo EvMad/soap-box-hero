@@ -145,49 +145,49 @@ router.get("/post/:id", async (req, res) => {
 
     // post by id??
 
-router.get("/post/id", async (req, res) => {
+// router.get("/post/id", async (req, res) => {
 
-  const onePost = await post.findOne({
+//   const onePost = await post.findOne({
 
-      where: {
-        id: 'id',
-      },
+//       where: {
+//         id: 'id',
+//       },
 
-    attributes: [
-      'id',
-      'title',
-      'content'
-    ],
-    include: [
-      {
-        model: comment,
-        attributes: ['message', 'date_posted', 'user_id'],
+//     attributes: [
+//       'id',
+//       'title',
+//       'content'
+//     ],
+//     include: [
+//       {
+//         model: comment,
+//         attributes: ['message', 'date_posted', 'user_id'],
 
-        include: {
-          model: user,
-          attributes: ['name']
-        }
-      }
-    ]
-  })
-  .then(dbPostData => {
-    if (!dbPostData) {
-      res.status(404).json({ message: 'No Post found with this id' });
-      console.log(dbPostData);
+//         include: {
+//           model: user,
+//           attributes: ['name']
+//         }
+//       }
+//     ]
+//   })
+//   .then(dbPostData => {
+//     if (!dbPostData) {
+//       res.status(404).json({ message: 'No Post found with this id' });
+//       console.log(dbPostData);
     
-    }
-      else {
-        console.log(onePost);
-      }
-      return; 
-    }
+//     }
+//       else {
+//         console.log(onePost);
+//       }
+//       return; 
+//     }
     
-  )
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  })
- });
+//   )
+//   .catch(err => {
+//     console.log(err);
+//     res.status(500).json(err);
+//   })
+//  });
 
 
 
