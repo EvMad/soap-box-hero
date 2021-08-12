@@ -135,7 +135,7 @@ router.get("/post/:id", async (req, res) => {
         attributes: ['message']
       }],
     })
-    .then(dbPostData => res.json(dbPostData.reverse()))
+    .then(dbPostData => res.json(dbPostData))
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -145,7 +145,7 @@ router.get("/post/:id", async (req, res) => {
 
     // post by id??
 
-router.get("/post/", async (req, res) => {
+router.get("/post/id", async (req, res) => {
 
   const onePost = await post.findOne({
 
