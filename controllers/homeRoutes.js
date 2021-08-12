@@ -130,6 +130,10 @@ router.get("/post/", async (req, res) => {
         model: user,
         attributes: ['name']
       }],
+      include: [{
+        model: comment,
+        attributes: ['message']
+      }],
     })
     .then(dbPostData => res.json(dbPostData.reverse()))
     .catch(err => {
