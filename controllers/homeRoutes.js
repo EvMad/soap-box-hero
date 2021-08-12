@@ -108,7 +108,7 @@ router.get("/createPost", async (req, res) => {
 
 // get all posts
 
-router.get("/post/", async (req, res) => {
+router.get("/post/:id", async (req, res) => {
   // try {
   //   // Find the logged in user based on the session ID
   //   const userData = await user.findByPk(req.session.user_id, {
