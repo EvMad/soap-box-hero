@@ -32,6 +32,7 @@ router.get("/", async (req,res) => {
       },
       {
         model: comment,
+        attributes: ['message'],
       },
     ],
   });
@@ -59,6 +60,10 @@ router.put('/:id', async (req, res) => {
     {
       where: {
         id: req.params.id,
+      },
+      include: {
+        model: comment,
+        attributes: ['message']
       },
     });
     let responseBack = await post.findByPk(req.params.id);

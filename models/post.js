@@ -26,9 +26,6 @@ class post extends Model {
           type: DataTypes.TEXT,
 
       },
-      comment: {
-          type: DataTypes.STRING,
-      },
       user_id: {
         type: DataTypes.INTEGER,
         references: {

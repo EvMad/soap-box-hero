@@ -116,7 +116,7 @@ router.get("/post/:id", async (req, res) => {
   //     include: [{ model: post }],
   //   });
   //   const loggedUser = userData.get({ plain: true });
-    post.findOne({
+    const onePost = await post.findOne({
 
       where: {
         id: req.params.id
@@ -135,62 +135,20 @@ router.get("/post/:id", async (req, res) => {
         attributes: ['message']
       }],
     })
-    .then(dbPostData => res.json(dbPostData))
+    .then(onePost => res.json(onePost))
     .catch(err => {
       console.log(err);
-      res.status(500).json(err);
-    });
+      res.status(500).json(err)
+      ;
+    })
+    res.render("post", {
+      post,
+      logged_in: req.session.logged_in,
+    })
+  ;
+    console.log(onePost);
+    // res.render("/post");
   });
-
-
-    // post by id??
-
-// router.get("/post/id", async (req, res) => {
-
-//   const onePost = await post.findOne({
-
-//       where: {
-//         id: 'id',
-//       },
-
-//     attributes: [
-//       'id',
-//       'title',
-//       'content'
-//     ],
-//     include: [
-//       {
-//         model: comment,
-//         attributes: ['message', 'date_posted', 'user_id'],
-
-//         include: {
-//           model: user,
-//           attributes: ['name']
-//         }
-//       }
-//     ]
-//   })
-//   .then(dbPostData => {
-//     if (!dbPostData) {
-//       res.status(404).json({ message: 'No Post found with this id' });
-//       console.log(dbPostData);
-    
-//     }
-//       else {
-//         console.log(onePost);
-//       }
-//       return; 
-//     }
-    
-//   )
-//   .catch(err => {
-//     console.log(err);
-//     res.status(500).json(err);
-//   })
-//  });
-
-
-
 
 
 
