@@ -10,9 +10,9 @@ This is a wordpress style blog UI that utilizes MySQL, Sequelize, bcrypt, Expres
 
 ![post](soapPost.png)
 
-Login and Post
+Sign Up, Login, and Post
 
-![login](soapLogin.gif)
+![login](soapLoginPost3.gif)
 
 
 

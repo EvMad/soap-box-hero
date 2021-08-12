@@ -49,6 +49,8 @@ router.post('/logout', (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
+    // take what you got from the client
+    // create an obj out of that
     const userData = await user.create(req.body);
 
     req.session.save(() => {
