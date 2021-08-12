@@ -130,7 +130,7 @@ router.get("/post/:id", async (req, res) => {
       }],
     })
     .then((onePost) => {
-    res.json(onePost)
+    const post = onePost.get({plain:true});
     res.render("post", {post} )
     
     })

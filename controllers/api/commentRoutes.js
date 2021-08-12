@@ -30,6 +30,9 @@ const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, (req, res) => {
   if (req.session) {
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    console.log(req.body);
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     comment.create({
       message: req.body.message,
       user_id: req.body.user_id,

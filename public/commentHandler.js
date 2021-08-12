@@ -6,12 +6,20 @@ const commentHandler = async (event) => {
     event.preventDefault();
   
     // const username = document.querySelector("#username-input").value.trim();
-    const message = document.querySelector("#comment").value.trim();
+    // reach into html
+    // grab the message text area
+    const messageElement = document.querySelector("#comment")
+    // pull the the value
+    const message = messageElement.value.trim();
+    // pull the data attributes
+    // const user_id = messageElement.getAttribute('data-userId')
+    const post_id = messageElement.getAttribute('data-postId')
+
   
     if (message) {
       const response = await fetch('/api/comment', {
         method: "POST",
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({ message, post_id }),
         headers: {
           "Content-Type": "application/json",
         },
